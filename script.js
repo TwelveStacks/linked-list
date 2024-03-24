@@ -70,10 +70,37 @@ class LinkedList {
 
     pop() {
         // Removes the last element from the list
+        if (!this.head) {
+            return
+        }
+
+        let currentNode = this.head;
+        let previousNode = null;
+
+        while (currentNode.nextNode) {
+            previousNode = currentNode;
+            currentNode = currentNode.nextNode
+        }
+        previousNode.nextNode = null;
+
+        this.size--
     }
 
     contains(value) {
         // returns true if the passed in value is in the list and otherwise returns false.
+        if (!this.head) {
+            return false
+        }
+
+        let currentNode = this.head
+
+        while (currentNode) {
+            if (currentNode.value === value) {
+                return true;
+            }
+            currentNode = currentNode.nextNode
+        }
+        return false;
     }
 
     find(value) {
@@ -82,12 +109,27 @@ class LinkedList {
 
     toString() {
         // represents your LinkedList objects as strings, so you can print them out and preview them in the console. The format should be: ( value ) -> ( value ) -> ( value ) -> null
+        if (!this.head) {
+            console.log('null');
+        }
+
+        let result = '';
         let currentNode = this.head;
 
         while (currentNode) {
-            console.log(currentNode.value)
+            result += `( ${currentNode.value} ) -> `
             currentNode = currentNode.nextNode;
         }
+        result += 'null';
+        console.log(result)
+    }
+
+    insertAt(value, index) {
+
+    }
+
+    removeAt(index) {
+
     }
 }
 
@@ -105,6 +147,4 @@ ll.prepend(200);
 ll.prepend(300);
 ll.append(400);
 
-ll.toString()
-
-console.log(ll.listHead())
+console.log(ll.contains(400))
