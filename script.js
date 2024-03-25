@@ -105,6 +105,18 @@ class LinkedList {
 
     find(value) {
         // returns the index of the node containing value, or null if not found.
+        let currentNode = this.head
+        let index = 0;
+
+        while (currentNode) {
+            if (currentNode.value == value) {
+                return index
+            } else {
+                currentNode = currentNode.nextNode
+                index++
+            }
+        }
+        return null;
     }
 
     toString() {
@@ -125,11 +137,36 @@ class LinkedList {
     }
 
     insertAt(value, index) {
+        // inserts a new node with the provided value at the given index
+        let currentNode = this.head;
+        let previousNode = null;
+        let counter = 0;
 
+        while (currentNode && counter < index) {
+            previousNode = currentNode
+            currentNode = currentNode.nextNode
+            counter++
+        }
+
+        let newNode = new Node(value);
+        previousNode.nextNode = newNode
+        newNode.nextNode = currentNode
     }
 
     removeAt(index) {
+        // removes node at given index
+        let currentNode = this.head;
+        let previousNode;
+        let counter = 0;
 
+        while (currentNode && counter < index) {
+            previousNode = currentNode;
+            currentNode = currentNode.nextNode;
+            counter++;
+        }
+
+        previousNode.nextNode = currentNode.nextNode;
+        this.size--
     }
 }
 
@@ -147,4 +184,6 @@ ll.prepend(200);
 ll.prepend(300);
 ll.append(400);
 
-console.log(ll.contains(400))
+ll.removeAt(2)
+
+ll.toString()
