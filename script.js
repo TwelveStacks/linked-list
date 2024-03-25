@@ -155,6 +155,10 @@ class LinkedList {
 
     removeAt(index) {
         // removes node at given index
+        if (!this.head || index < 0) {
+            return "Invalid arguments"
+        }
+
         let currentNode = this.head;
         let previousNode;
         let counter = 0;
@@ -184,6 +188,6 @@ ll.prepend(200);
 ll.prepend(300);
 ll.append(400);
 
-ll.removeAt(2)
+ll.removeAt(-1)
 
 ll.toString()
